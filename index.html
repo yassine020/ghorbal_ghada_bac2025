@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BAC 2K25 Countdown</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+   <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+         a.home-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: #94B4C1;
+      color: #0F243E;
+      padding: 10px 18px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 0 10px #94B4C1;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    a.home-button:hover {
+      background-color: #b5d2de;
+      box-shadow: 0 0 15px #b5d2de;
+    }
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+  color: #ECEFCA;
+  text-align: center;
+  padding: 30px 0;
+
+  /* Fixed background properties */
+  background-image: url("ghorbal_ghada.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+    h1 {
+      font-size: 2.8rem;
+      margin: 0;
+      color: #000000;
+    }
+
+    .countdown {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      font-size: 5rem;
+      font-weight: bold;
+    }
+
+    .countdown div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      min-width: 100px;
+    }
+
+    .countdown div span:first-child {
+      color: #94B4C1;
+      font-size: 5rem;
+    }
+
+    #seconds, .seconds {
+      color: rgb(228, 24, 24) !important;
+      animation: glow 1s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px red; }
+      to { text-shadow: 0 0 20px red; }
+    }
+
+    .label {
+      font-size: 0.9rem;
+      margin-top: 5px;
+      color: #ECEFCA;
+    }
+
+    footer {
+      font-size: 0.8rem;
+      color: #ECEFCA;
+      margin: 0;
+    }
+
+    @media (min-width: 600px) {
+      h1 {
+        font-size: 3.2rem;
+      }
+      .countdown {
+        font-size: 6rem;
+        gap: 35px;
+      }
+      .countdown div span:first-child {
+        font-size: 6rem;
+      }
+      .label {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>BAC 2K25 COUNTDOWN</h1>
+  <h1>AHMAD GHORBAL</h1>
+  <div class="countdown">
+    <div><span id="days">00</span><span class="label">DAYS</span></div>
+    <div><span>:</span></div>
+    <div><span id="hours">00</span><span class="label">HOURS</span></div>
+    <div><span>:</span></div>
+    <div><span id="minutes">00</span><span class="label">MINUTES</span></div>
+    <div><span>:</span></div>
+    <div><span id="seconds" class="seconds">00</span><span class="label">SECONDS</span></div>
+  </div>
+  <footer>
+    &copy; yassine haj ammar bac info 2k25. All rights are not reserved.
+  </footer>
+  <script>
+    const countdownDate = new Date("June 2, 2025 00:00:00").getTime();
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = String(days).padStart(2, '0');
+      document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+    };
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
